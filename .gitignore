@@ -1,0 +1,16 @@
+# Python 运行时产物
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# Orchestrator 本地运行输出
+.multi_agent/
