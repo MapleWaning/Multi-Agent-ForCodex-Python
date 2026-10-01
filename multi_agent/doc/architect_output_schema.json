@@ -1,0 +1,125 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "objective",
+    "summary",
+    "artifacts",
+    "tasks",
+    "acceptance_criteria"
+  ],
+  "properties": {
+    "objective": {
+      "type": "string",
+      "description": "The overall objective of this run."
+    },
+    "summary": {
+      "type": "string",
+      "description": "A concise summary of the overall implementation or execution plan."
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Optional shared design or planning documents required by one or more tasks.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "filename",
+          "description",
+          "content"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique artifact identifier within this plan."
+          },
+          "filename": {
+            "type": "string",
+            "description": "Markdown filename only, for example api-contract.md. Do not include directory paths."
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of the artifact and why it is needed."
+          },
+          "content": {
+            "type": "string",
+            "description": "Complete Markdown body of the artifact."
+          }
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered executable tasks derived from the plan.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "objective",
+          "instructions",
+          "dependencies",
+          "inputs",
+          "expected_outputs",
+          "acceptance_criteria"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique task identifier within this plan."
+          },
+          "title": {
+            "type": "string",
+            "description": "Short human-readable task title."
+          },
+          "objective": {
+            "type": "string",
+            "description": "The specific goal this task must achieve."
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Detailed execution instructions for the worker."
+          },
+          "dependencies": {
+            "type": "array",
+            "description": "Task IDs that must be completed before this task starts.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Required inputs, including relevant artifact IDs, files, prior task outputs, datasets, configurations, or other resources.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expected_outputs": {
+            "type": "array",
+            "description": "Outputs expected from this task.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptance_criteria": {
+            "type": "array",
+            "description": "Conditions that must be satisfied for this task result to be accepted.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "description": "Overall acceptance criteria for the complete run.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
